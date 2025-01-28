@@ -64,7 +64,7 @@ public class ElementaryTraining {
     public int swapNumbers(int value) {
         if (value < 10) return value;
 
-        String number = Integer.toString(Math.abs(value));
+        String number = Integer.toString(value);
         if (number.length() > 5) throw new IllegalArgumentException("Максимум пятизначное число.");
 
         char[] digits = number.toCharArray();

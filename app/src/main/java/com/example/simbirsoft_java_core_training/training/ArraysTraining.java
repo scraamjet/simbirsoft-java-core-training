@@ -24,9 +24,9 @@ public class ArraysTraining {
         for (int i = 0; i < valuesArray.length - 1; i++) {
             for (int j = 0; j < valuesArray.length - i - 1; j++) {
                 if (valuesArray[j] > valuesArray[j + 1]) {
-                    int temp = valuesArray[j];
-                    valuesArray[j] = valuesArray[j + 1];
-                    valuesArray[j + 1] = temp;
+                    valuesArray[j] = valuesArray[j] ^ valuesArray[j + 1];
+                    valuesArray[j + 1] = valuesArray[j] ^ valuesArray[j + 1];
+                    valuesArray[j] = valuesArray[j] ^ valuesArray[j + 1];
                 }
             }
         }
