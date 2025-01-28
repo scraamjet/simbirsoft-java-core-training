@@ -98,7 +98,6 @@ public class ElementaryTraining {
                 result.append(digit);
             }
         }
-
         return Integer.parseInt(result.toString());
     }
 }

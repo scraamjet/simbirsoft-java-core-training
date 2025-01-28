@@ -30,7 +30,6 @@ public class ArraysTraining {
                 }
             }
         }
-
         return valuesArray;
     }
 
@@ -95,7 +94,6 @@ public class ArraysTraining {
                 fibonacci[i] = fibonacci[i - 1] + fibonacci[i - 2];
             }
         }
-
         return fibonacci;
     }
 
