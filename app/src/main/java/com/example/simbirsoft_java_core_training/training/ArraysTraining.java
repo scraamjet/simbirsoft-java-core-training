@@ -21,7 +21,15 @@ public class ArraysTraining {
      * @return отсортированный массив
      */
     public int[] sort(int[] valuesArray) {
-        //TODO: implement it
+        for (int i = 0; i < valuesArray.length - 1; i++) {
+            for (int j = 0; j < valuesArray.length - i - 1; j++) {
+                if (valuesArray[j] > valuesArray[j + 1]) {
+                    valuesArray[j] = valuesArray[j] ^ valuesArray[j + 1];
+                    valuesArray[j + 1] = valuesArray[j] ^ valuesArray[j + 1];
+                    valuesArray[j] = valuesArray[j] ^ valuesArray[j + 1];
+                }
+            }
+        }
         return valuesArray;
     }
 
@@ -34,8 +42,16 @@ public class ArraysTraining {
      * @return максимальное число или 0
      */
     public int maxValue(int... values) {
-        //TODO: implement it
-        return 0;
+        if (values.length == 0) return 0;
+
+        int max = values[0];
+
+        for (int value : values) {
+            if (value > max) {
+                max = value;
+            }
+        }
+        return max;
     }
 
     /**
@@ -46,8 +62,14 @@ public class ArraysTraining {
      * @return входящий массив в обратном порядке
      */
     public int[] reverse(int[] array) {
-        //TODO: implement it
-        return new int[]{};
+        int n = array.length;
+
+        for (int i = 0; i < n / 2; i++) {
+            int temp = array[i];
+            array[i] = array[n - i - 1];
+            array[n - i - 1] = temp;
+        }
+        return array;
     }
 
     /**
@@ -61,8 +83,18 @@ public class ArraysTraining {
      * @return массив из чисел Фибоначчи
      */
     public int[] fibonacciNumbers(int numbersCount) {
-        //TODO: implement it
-        return new int[]{};
+        if (numbersCount < 1) return new int[]{};
+
+        int[] fibonacci = new int[numbersCount];
+        fibonacci[0] = 1;
+
+        if (numbersCount > 1) {
+            fibonacci[1] = 1;
+            for (int i = 2; i < numbersCount; i++) {
+                fibonacci[i] = fibonacci[i - 1] + fibonacci[i - 2];
+            }
+        }
+        return fibonacci;
     }
 
     /**
@@ -74,8 +106,24 @@ public class ArraysTraining {
      * элементов
      */
     public int maxCountSymbol(int[] array) {
-        //TODO: implement it
-        return 0;
+        if (array.length == 0) return 0;
+
+        Arrays.sort(array);
+
+        int maxCount = 1;
+        int currentCount = 1;
+
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] == array[i - 1]) {
+                currentCount++;
+            } else {
+                if (currentCount > maxCount) {
+                    maxCount = currentCount;
+                }
+                currentCount = 1;
+            }
+        }
+        return Math.max(maxCount, currentCount);
     }
 }
 
