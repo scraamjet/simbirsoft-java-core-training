@@ -41,8 +41,8 @@ public class SubscriberManagerTest {
         System.out.println("\nАбоненты, у которых время городских переговоров превышает 100 минут:");
         result.forEach(Subscriber::display);
 
-        assertTrue(result.stream().anyMatch(subscriber -> subscriber.getId() == 1)); // Иванов
-        assertTrue(result.stream().anyMatch(subscriber -> subscriber.getId() == 4)); // Кузнецов
+        assertTrue(result.stream().anyMatch(subscriber -> subscriber.getId() == 1));
+        assertTrue(result.stream().anyMatch(subscriber -> subscriber.getId() == 4));
     }
 
     @Test
