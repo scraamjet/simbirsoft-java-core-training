@@ -4,8 +4,8 @@ import java.util.Map;
 import java.util.HashMap;
 
 class Order {
-    private Map<Product, Integer> products = new HashMap<>();
-    private Customer customer;
+    private final Map<Product, Integer> products = new HashMap<>();
+    private final Customer customer;
     private boolean isPaid = false;
 
     public Order(Customer customer) {
@@ -16,8 +16,8 @@ class Order {
         return isPaid;
     }
 
-    public void setPaid(boolean paid) {
-        isPaid = paid;
+    public void markAsPaid() {
+        this.isPaid = true;
     }
 
     public Customer getCustomer() {
@@ -25,6 +25,7 @@ class Order {
     }
 
     public void addProduct(Product product, int quantity) {
+        if (quantity <= 0) throw new IllegalArgumentException("Количество должно быть больше нуля");
         products.merge(product, quantity, Integer::sum);
     }
 
@@ -34,4 +35,3 @@ class Order {
                 .sum();
     }
 }
-

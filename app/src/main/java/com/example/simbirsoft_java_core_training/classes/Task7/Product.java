@@ -1,7 +1,7 @@
 package com.example.simbirsoft_java_core_training.classes.Task7;
 
 class Product {
-    private String name;
+    private final String name;
     private double price;
 
     public Product(String name, double price) {
@@ -11,10 +11,6 @@ class Product {
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public double getPrice() {

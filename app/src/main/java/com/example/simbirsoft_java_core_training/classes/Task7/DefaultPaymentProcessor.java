@@ -1,12 +1,12 @@
 package com.example.simbirsoft_java_core_training.classes.Task7;
 
-class PaymentSystem {
-    public static boolean processPayment(Order order) {
+class DefaultPaymentProcessor implements PaymentProcessor {
+    @Override
+    public boolean process(Order order) {
         if (order.getCustomer().isBlacklisted()) {
             return false;
         }
-
-        order.setPaid(true);
+        order.markAsPaid();
         return true;
     }
 }

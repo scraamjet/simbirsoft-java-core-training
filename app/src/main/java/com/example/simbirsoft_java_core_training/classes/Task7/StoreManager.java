@@ -1,20 +1,25 @@
 package com.example.simbirsoft_java_core_training.classes.Task7;
 
-import java.util.Set;
-import java.util.HashSet;
+class StoreManager {
+    private final PaymentProcessor paymentProcessor;
 
-public class StoreManager {
-    private Set<Customer> blacklist = new HashSet<>();
-
-    public void registerSale(Order order) {
-        if (order.isPaid()) {
-        } else {
-            addCustomerToBlackList(order.getCustomer());
-        }
+    public StoreManager(PaymentProcessor paymentProcessor) {
+        this.paymentProcessor = paymentProcessor;
     }
 
-    public void addCustomerToBlackList(Customer customer) {
-        customer.setBlacklisted(true);
-        blacklist.add(customer);
+    public boolean registerSale(Order order) {
+        if (order.isPaid()) {
+            System.out.println("Заказ уже оплачен.");
+            return true;
+        }
+
+        if (paymentProcessor.process(order)) {
+            System.out.println("Платеж успешно прошел. Продажа зарегистрирована.");
+            return true;
+        } else {
+            order.getCustomer().markAsBlacklisted();
+            System.out.println("Платеж не прошел. Клиент добавлен в черный список.");
+            return false;
+        }
     }
 }

@@ -1,7 +1,7 @@
 package com.example.simbirsoft_java_core_training.classes.Task7;
 
 class Customer {
-    private String name;
+    private final String name;
     private boolean isBlacklisted = false;
 
     public Customer(String name) {
@@ -12,15 +12,11 @@ class Customer {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public boolean isBlacklisted() {
         return isBlacklisted;
     }
 
-    public void setBlacklisted(boolean blacklisted) {
-        isBlacklisted = blacklisted;
+    public void markAsBlacklisted() {
+        this.isBlacklisted = true;
     }
 }
