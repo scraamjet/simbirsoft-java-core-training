@@ -28,6 +28,7 @@ public class LambdaExampleTest {
         } finally {
             System.setOut(originalOut);
         }
+
         System.out.println(outputStream);
     }
 }
