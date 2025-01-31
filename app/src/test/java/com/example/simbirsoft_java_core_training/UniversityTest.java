@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -125,13 +126,13 @@ public class UniversityTest {
         bestStudents.forEach((group, student) -> {
             assertNotNull(student);
 
-            double maxAvg = students.stream()
+            OptionalDouble maxAvgOpt = students.stream()
                     .filter(s -> s.getGroupNumber() == group)
                     .mapToDouble(Student::getAverageGrade)
-                    .max()
-                    .orElseThrow(() -> new AssertionError("Не найден студент с максимальным средним баллом"));
+                    .max();
 
-            assertEquals(maxAvg, student.getAverageGrade(), 0.01);
+            assertTrue("Не найден студент с максимальным средним баллом в группе " + group, maxAvgOpt.isPresent());
+            assertEquals(maxAvgOpt.getAsDouble(), student.getAverageGrade(), 0.01);
         });
     }
 }
