@@ -2,7 +2,9 @@ package com.example.simbirsoft_java_core_training.collections;
 
 import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -26,9 +28,29 @@ public class CollectionsBlock<T extends Comparable> {
      * @return объединенный упорядоченный список
      * @throws NullPointerException если один из параметров null
      */
+
     public List<T> collectionTask0(@NonNull List<T> firstList, @NonNull List<T> secondList) {
-        //TODO: implement it
-        return Collections.emptyList();
+        if (firstList == null || secondList == null) throw new NullPointerException("Входные параметры не могут быть null");
+
+        List<T> mergedList = new ArrayList<>();
+        int i = 0, j = 0;
+
+        while (i < firstList.size() && j < secondList.size()) {
+            if (firstList.get(i).compareTo(secondList.get(j)) >= 0) {
+                mergedList.add(firstList.get(i++));
+            } else {
+                mergedList.add(secondList.get(j++));
+            }
+        }
+
+        while (i < firstList.size()) {
+            mergedList.add(firstList.get(i++));
+        }
+
+        while (j < secondList.size()) {
+            mergedList.add(secondList.get(j++));
+        }
+        return mergedList;
     }
 
     /**
@@ -39,8 +61,15 @@ public class CollectionsBlock<T extends Comparable> {
      * @throws NullPointerException если один из параметров null
      */
     public List<T> collectionTask1(@NonNull List<T> inputList) {
-        //TODO: implement it
-        return Collections.emptyList();
+        if (inputList== null) throw new NullPointerException("Входные параметры не могут быть null");
+
+        List<T> result = new ArrayList<>();
+
+        for (int i = 0; i < inputList.size(); i++) {
+            result.add(inputList.get(i));
+            result.addAll(inputList.subList(0, i ));
+        }
+        return result;
     }
 
     /**
@@ -52,8 +81,9 @@ public class CollectionsBlock<T extends Comparable> {
      * @throws NullPointerException если один из параметров null
      */
     public boolean collectionTask2(@NonNull List<T> firstList, @NonNull List<T> secondList) {
-        //TODO: implement it
-        return true;
+        if (firstList == null || secondList == null) throw new NullPointerException("Входные параметры не могут быть null");
+
+        return new HashSet<>(firstList).equals(new HashSet<>(secondList));
     }
 
     /**
@@ -68,8 +98,14 @@ public class CollectionsBlock<T extends Comparable> {
      * @throws NullPointerException если один из параметров null
      */
     public List<T> collectionTask3(@NonNull List<T> inputList, int n) {
-        //TODO: implement it
-        return Collections.emptyList();
+        if (inputList == null) throw new NullPointerException("Входные параметры не могут быть null");
+
+        if (inputList.isEmpty()) return inputList;
+
+        int shift = ((n % inputList.size()) + inputList.size()) % inputList.size();
+        Collections.rotate(inputList, shift);
+
+        return inputList;
     }
 
     /**
@@ -82,10 +118,15 @@ public class CollectionsBlock<T extends Comparable> {
      * @return список после замены каждого вхождения слова A на слово В
      * @throws NullPointerException если один из параметров null
      */
-    public List<String> collectionTask4(@NonNull List<String> inputList, @NonNull String a,
-                                        @NonNull String b) {
-        //TODO: implement it
-        return Collections.emptyList();
+    public List<String> collectionTask4(@NonNull List<String> inputList, @NonNull String a, @NonNull String b) {
+        if (inputList == null || a == null || b == null) throw new NullPointerException("Входные параметры не могут быть null");
+
+        List<String> result = new ArrayList<>();
+
+        for (String word : inputList) {
+            result.add(word.equals(a) ? b : word);
+        }
+        return result;
     }
 
     /*
