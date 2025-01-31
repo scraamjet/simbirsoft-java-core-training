@@ -7,9 +7,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class SubscriberManagerTest {
@@ -36,39 +40,51 @@ public class SubscriberManagerTest {
     @Test
     public void testGetSubscribersWithCityCallTimeAbove() {
         List<Subscriber> result = manager.getSubscribersWithCityCallTimeAbove(100);
+
+        assertNotNull(result);
+        assertFalse(result.isEmpty());
         assertEquals(3, result.size());
 
         System.out.println("\nАбоненты, у которых время городских переговоров превышает 100 минут:");
         result.forEach(Subscriber::display);
 
-        assertTrue(result.stream().anyMatch(subscriber -> subscriber.getId() == 1));
-        assertTrue(result.stream().anyMatch(subscriber -> subscriber.getId() == 4));
+        List<Integer> expectedIds = Arrays.asList(1, 3, 4);
+        List<Integer> actualIds = result.stream().map(Subscriber::getId).collect(Collectors.toList());
+
+        assertTrue(actualIds.containsAll(expectedIds));
     }
 
     @Test
     public void testGetSubscribersWithLongDistanceCalls() {
         List<Subscriber> result = manager.getSubscribersWithLongDistanceCalls();
+
+        assertNotNull(result);
+        assertFalse(result.isEmpty());
         assertEquals(4, result.size());
 
         System.out.println("\nАбоненты, которые пользовались междугородней связью:");
         result.forEach(Subscriber::display);
 
-        assertTrue(result.stream().anyMatch(subscriber -> subscriber.getId() == 3));
-        assertTrue(result.stream().anyMatch(subscriber -> subscriber.getId() == 4));
-        assertTrue(result.stream().anyMatch(subscriber -> subscriber.getId() == 5));
+        List<Integer> expectedIds = Arrays.asList(1, 3, 4, 5);
+        List<Integer> actualIds = result.stream().map(Subscriber::getId).collect(Collectors.toList());
+
+        assertTrue(actualIds.containsAll(expectedIds));
     }
 
     @Test
     public void testGetSubscribersInAlphabeticalOrder() {
         List<Subscriber> result = manager.getSubscribersInAlphabeticalOrder();
 
+        assertNotNull(result);
+        assertFalse(result.isEmpty());
+        assertEquals(5, result.size());
+
         System.out.println("\nАбоненты в алфавитном порядке:");
         result.forEach(Subscriber::display);
 
-        assertEquals(1, result.get(0).getId());
-        assertEquals(4, result.get(1).getId());
-        assertEquals(5, result.get(2).getId());
-        assertEquals(2, result.get(3).getId());
-        assertEquals(3, result.get(4).getId());
+        List<Integer> expectedOrder = Arrays.asList(1, 4, 5, 2, 3);
+        List<Integer> actualOrder = result.stream().map(Subscriber::getId).collect(Collectors.toList());
+
+        assertEquals(expectedOrder, actualOrder);
     }
 }

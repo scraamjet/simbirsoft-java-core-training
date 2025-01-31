@@ -12,16 +12,6 @@ class Order {
         this.customer = customer;
     }
 
-    public void addProduct(Product product, int quantity) {
-        products.put(product, products.getOrDefault(product, 0) + quantity);
-    }
-
-    public double getTotalPrice() {
-        return products.entrySet().stream()
-                .mapToDouble(entry -> entry.getKey().getPrice() * entry.getValue())
-                .sum();
-    }
-
     public boolean isPaid() {
         return isPaid;
     }
@@ -32,6 +22,16 @@ class Order {
 
     public Customer getCustomer() {
         return customer;
+    }
+
+    public void addProduct(Product product, int quantity) {
+        products.merge(product, quantity, Integer::sum);
+    }
+
+    public double getTotalPrice() {
+        return products.entrySet().stream()
+                .mapToDouble(entry -> entry.getKey().getPrice() * entry.getValue())
+                .sum();
     }
 }
 

@@ -9,11 +9,11 @@ public class StoreManager {
     public void registerSale(Order order) {
         if (order.isPaid()) {
         } else {
-            blacklistCustomer(order.getCustomer());
+            addCustomerToBlackList(order.getCustomer());
         }
     }
 
-    public void blacklistCustomer(Customer customer) {
+    public void addCustomerToBlackList(Customer customer) {
         customer.setBlacklisted(true);
         blacklist.add(customer);
     }

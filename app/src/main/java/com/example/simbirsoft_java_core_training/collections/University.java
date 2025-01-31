@@ -27,7 +27,10 @@ public class University {
                         list -> {
                             Map<String, Double> avgGrades = new HashMap<>();
                             list.get(0).getGrades().keySet().forEach(subject -> {
-                                double avg = list.stream().mapToInt(s -> s.getGrades().get(subject)).average().orElse(0);
+                                double avg = list.stream()
+                                        .mapToInt(s -> s.getGrades().get(subject))
+                                        .average()
+                                        .orElse(0);
                                 double roundedAvg = Math.round(avg * 10.0) / 10.0;
                                 avgGrades.put(subject, roundedAvg);
                             });

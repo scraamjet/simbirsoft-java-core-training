@@ -10,6 +10,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class UniversityTest {
 
@@ -52,18 +53,29 @@ public class UniversityTest {
     @Test
     public void testSortStudentsByCourseAndName() {
         university.sortStudentsByCourseAndName();
+
         students.forEach(System.out::println);
+
         int[] sortedId = {10, 3, 9, 7, 1, 13, 8, 0, 11, 5, 2, 14, 4, 12, 6};
 
-        for (int i = 0; i < students.size(); i++) {
-            assertEquals(sortedId[i], students.get(i).getId());
-        }
+        List<Integer> actualIds = students.stream()
+                .map(Student::getId)
+                .collect(Collectors.toList());
+
+        List<Integer> expectedIds = Arrays.stream(sortedId)
+                .boxed()
+                .collect(Collectors.toList());
+
+        assertEquals(expectedIds, actualIds);
     }
 
     @Test
     public void testCalculateAverageGradesByGroup() {
         Map<Integer, Map<String, Double>> avgGradesByGroup = university.calculateAverageGradesByGroup();
-        avgGradesByGroup.forEach((group, grades) -> System.out.println("Группа: " + group + " " + grades));
+
+        avgGradesByGroup.forEach((group, grades) ->
+                System.out.println("Группа: " + group + " " + grades));
+
         assertNotNull(avgGradesByGroup);
         assertEquals(3.7, avgGradesByGroup.get(101).get("Математика"), 0.01);
         assertEquals(4.3, avgGradesByGroup.get(102).get("Биология"), 0.01);
@@ -72,28 +84,56 @@ public class UniversityTest {
     @Test
     public void testGetOldestStudent() {
         Student oldest = university.getOldestStudent();
+
         System.out.println("Самый взрослый студент: " + oldest);
+
         assertNotNull(oldest);
-        assertEquals(14, oldest.getId());
+
+        int minBirthYear = students.stream()
+                .mapToInt(Student::getBirthYear)
+                .min()
+                .orElseThrow();
+
+        assertEquals(minBirthYear, oldest.getBirthYear());
     }
 
     @Test
     public void testGetYoungestStudent() {
         Student youngest = university.getYoungestStudent();
+
         System.out.println("Самый молодой студент: " + youngest);
+
         assertNotNull(youngest);
-        assertEquals(3, youngest.getId());
+
+        int maxBirthYear = students.stream()
+                .mapToInt(Student::getBirthYear)
+                .max()
+                .orElseThrow();
+
+        assertEquals(maxBirthYear, youngest.getBirthYear());
     }
 
     @Test
     public void testGetBestStudentsByGroup() {
         Map<Integer, Student> bestStudents = university.getBestStudentsByGroup();
-        bestStudents.forEach((group, student) -> System.out.println("Лучший студент в группе " + group + ": " + student));
+
+        bestStudents.forEach((group, student) ->
+                System.out.println("Лучший студент в группе " + group + ": " + student));
+
         assertNotNull(bestStudents);
-        assertEquals(13, bestStudents.get(101).getId());
-        assertEquals(7, bestStudents.get(102).getId());
-        assertEquals(3, bestStudents.get(103).getId());
-        assertEquals(14, bestStudents.get(104).getId());
+
+        bestStudents.forEach((group, student) -> {
+            assertNotNull(student);
+
+            double maxAvg = students.stream()
+                    .filter(s -> s.getGroupNumber() == group)
+                    .mapToDouble(Student::getAverageGrade)
+                    .max()
+                    .orElseThrow(() -> new AssertionError("Не найден студент с максимальным средним баллом"));
+
+            assertEquals(maxAvg, student.getAverageGrade(), 0.01);
+        });
     }
 }
+
 

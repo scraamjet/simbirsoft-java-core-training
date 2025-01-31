@@ -1,6 +1,7 @@
 package com.example.simbirsoft_java_core_training.classes.Task5;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,17 +31,9 @@ public class SubscriberManager {
 
     public List<Subscriber> getSubscribersInAlphabeticalOrder() {
         return subscribers.stream()
-                .sorted((s1, s2) -> {
-                    int lastNameComparison = s1.getLastName().compareTo(s2.getLastName());
-                    if (lastNameComparison != 0) {
-                        return lastNameComparison;
-                    }
-                    int firstNameComparison = s1.getFirstName().compareTo(s2.getFirstName());
-                    if (firstNameComparison != 0) {
-                        return firstNameComparison;
-                    }
-                    return s1.getMiddleName().compareTo(s2.getMiddleName());
-                })
+                .sorted(Comparator.comparing(Subscriber::getLastName)
+                        .thenComparing(Subscriber::getFirstName)
+                        .thenComparing(Subscriber::getMiddleName))
                 .collect(Collectors.toList());
     }
 }
