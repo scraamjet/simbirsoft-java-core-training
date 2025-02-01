@@ -1,10 +1,10 @@
 package com.example.simbirsoft_java_core_training.classes.Task1;
 
-public class SimpleClass {
+public class NumberPair {
     private int var1;
     private int var2;
 
-    public SimpleClass(int var1, int var2) {
+    public NumberPair(int var1, int var2) {
         this.var1 = var1;
         this.var2 = var2;
     }
