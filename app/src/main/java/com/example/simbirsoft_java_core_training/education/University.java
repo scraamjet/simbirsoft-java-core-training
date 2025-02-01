@@ -1,4 +1,4 @@
-package com.example.simbirsoft_java_core_training.collections;
+package com.example.simbirsoft_java_core_training.education;
 
 import java.util.Comparator;
 import java.util.HashMap;

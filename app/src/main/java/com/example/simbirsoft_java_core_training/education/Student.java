@@ -1,4 +1,4 @@
-package com.example.simbirsoft_java_core_training.collections;
+package com.example.simbirsoft_java_core_training.education;
 
 import java.util.Map;
 
@@ -12,7 +12,14 @@ public class Student {
     private int groupNumber;
     private Map<String, Integer> grades;
 
-    public Student(int id, String lastName, String firstName, String middleName, int birthYear, int course, int groupNumber, Map<String, Integer> grades) {
+    public Student(int id,
+                   String lastName,
+                   String firstName,
+                   String middleName,
+                   int birthYear,
+                   int course,
+                   int groupNumber,
+                   Map<String, Integer> grades) {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;

@@ -1,7 +1,7 @@
 package com.example.simbirsoft_java_core_training;
 
-import com.example.simbirsoft_java_core_training.collections.Student;
-import com.example.simbirsoft_java_core_training.collections.University;
+import com.example.simbirsoft_java_core_training.education.Student;
+import com.example.simbirsoft_java_core_training.education.University;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
