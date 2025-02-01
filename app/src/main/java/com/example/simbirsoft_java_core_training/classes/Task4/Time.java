@@ -1,7 +1,6 @@
 package com.example.simbirsoft_java_core_training.classes.Task4;
 
 public class Time {
-
     private int hours;
     private int minutes;
     private int seconds;
@@ -17,55 +16,45 @@ public class Time {
     }
 
     public void setHours(int hours) {
-        if (hours < 0 || hours > 23) {
+        if (hours < 0 || hours >= 24) {
             throw new IllegalArgumentException("Часы должны быть от 0 до 23.");
         }
         this.hours = hours;
     }
 
     public void setMinutes(int minutes) {
-        if (minutes < 0 || minutes > 59) {
+        if (minutes < 0 || minutes >= 60) {
             throw new IllegalArgumentException("Минуты должны быть от 0 до 59.");
         }
         this.minutes = minutes;
     }
 
     public void setSeconds(int seconds) {
-        if (seconds < 0 || seconds > 59) {
+        if (seconds < 0 || seconds >= 60) {
             throw new IllegalArgumentException("Секунды должны быть от 0 до 59.");
         }
         this.seconds = seconds;
     }
 
-    public void addHours(int hours) {
-        this.hours = (this.hours + hours) % 24;
-
-        if (this.hours < 0) {
-            this.hours += 24;
-        }
+    public void addHours(int h) {
+        setHours((hours + h + 24) % 24);;
     }
 
-    public void addMinutes(int minutes) {
-        int totalMinutes = this.minutes + minutes;
-
+    public void addMinutes(int m) {
+        int totalMinutes = minutes + m;
         addHours(totalMinutes / 60);
-        this.minutes = totalMinutes % 60;
-
-        if (this.minutes < 0) {
-            this.minutes += 60;
-            addHours(-1);
-        }
+        setMinutes(totalMinutes % 60);
     }
 
-    public void addSeconds(int seconds) {
-        int totalSeconds = this.seconds + seconds;
-
+    public void addSeconds(int s) {
+        int totalSeconds = seconds + s;
         addMinutes(totalSeconds / 60);
-        this.seconds = totalSeconds % 60;
+        setSeconds(totalSeconds % 60);
+    }
 
-        if (this.seconds < 0) {
-            this.seconds += 60;
-            addMinutes(-1);
-        }
+    @Override
+    public String toString() {
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
 }
+
