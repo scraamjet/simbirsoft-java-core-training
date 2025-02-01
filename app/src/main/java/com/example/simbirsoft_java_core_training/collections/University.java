@@ -20,24 +20,37 @@ public class University {
     }
 
     public Map<Integer, Map<String, Double>> calculateAverageGradesByGroup() {
-        return students.stream().collect(Collectors.groupingBy(
-                Student::getGroupNumber,
-                Collectors.collectingAndThen(
-                        Collectors.toList(),
-                        list -> {
-                            Map<String, Double> avgGrades = new HashMap<>();
-                            list.get(0).getGrades().keySet().forEach(subject -> {
-                                double avg = list.stream()
-                                        .mapToInt(s -> s.getGrades().get(subject))
-                                        .average()
-                                        .orElse(0);
-                                double roundedAvg = Math.round(avg * 10.0) / 10.0;
-                                avgGrades.put(subject, roundedAvg);
-                            });
-                            return avgGrades;
-                        }
-                )
-        ));
+        return students.stream()
+                .collect(Collectors.groupingBy(
+                        Student::getGroupNumber,
+                        Collectors.collectingAndThen(
+                                Collectors.toList(),
+                                this::calculateAverageGrades
+                        )
+                ));
+    }
+
+    private Map<String, Double> calculateAverageGrades(List<Student> students) {
+        Map<String, Double> avgGrades = new HashMap<>();
+        if (!students.isEmpty()) {
+            students.get(0).getGrades().keySet().forEach(subject -> {
+                double avg = calculateSubjectAverage(students, subject);
+                double roundedAvg = roundToOneDecimal(avg);
+                avgGrades.put(subject, roundedAvg);
+            });
+        }
+        return avgGrades;
+    }
+
+    private double calculateSubjectAverage(List<Student> students, String subject) {
+        return students.stream()
+                .mapToInt(s -> s.getGrades().get(subject))
+                .average()
+                .orElse(0);
+    }
+
+    private double roundToOneDecimal(double value) {
+        return Math.round(value * 10.0) / 10.0;
     }
 
     public Student getOldestStudent() {
