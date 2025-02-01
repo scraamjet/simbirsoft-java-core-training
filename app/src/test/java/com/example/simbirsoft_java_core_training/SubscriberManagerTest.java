@@ -22,19 +22,15 @@ public class SubscriberManagerTest {
 
     @BeforeClass
     public static void init() {
-        manager = new SubscriberManager();
-
-        Subscriber[] subscribers = {
+        List<Subscriber> subscribers = Arrays.asList(
                 new Subscriber(1, "Иванов", "Иван", "Иванович", "ул. Ленина, 10", "1234-5678-9101", 500, 100, 150, 30),
                 new Subscriber(2, "Петров", "Петр", "Петрович", "ул. Гагарина, 5", "9876-5432-1098", 200, 50, 80, 0),
                 new Subscriber(3, "Сидоров", "Алексей", "Владимирович", "ул. Кирова, 3", "3456-7890-1234", 100, 70, 200, 20),
                 new Subscriber(4, "Кузнецов", "Сергей", "Олегович", "ул. Победы, 15", "6789-0123-4567", 300, 90, 120, 50),
                 new Subscriber(5, "Морозов", "Дмитрий", "Игоревич", "ул. Чехова, 7", "1122-3344-5566", 400, 60, 50, 10)
-        };
+        );
 
-        for (Subscriber subscriber : subscribers) {
-            manager.addSubscriber(subscriber);
-        }
+        manager = new SubscriberManager(subscribers);
     }
 
     @Test
