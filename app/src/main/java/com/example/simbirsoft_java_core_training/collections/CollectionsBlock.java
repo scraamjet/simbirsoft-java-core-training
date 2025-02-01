@@ -34,7 +34,8 @@ public class CollectionsBlock<T extends Comparable> {
             throw new NullPointerException("Входные параметры не могут быть null");
 
         List<T> mergedList = new ArrayList<>();
-        int i = 0, j = 0;
+        int i = 0;
+        int j = 0;
 
         while (i < firstList.size() && j < secondList.size()) {
             if (firstList.get(i).compareTo(secondList.get(j)) >= 0) {
