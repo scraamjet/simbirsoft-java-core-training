@@ -6,6 +6,7 @@ import java.util.ArrayList;
 class Faculty {
     private String name;
     private List<Applicant> applicants = new ArrayList<>();
+    private List<Teacher> teachers = new ArrayList<>();
     private int passingScore;
 
     public Faculty(String name, int passingScore) {
@@ -23,6 +24,10 @@ class Faculty {
 
     public void registerApplicant(Applicant applicant) {
         applicants.add(applicant);
+    }
+
+    public void addTeacher(Teacher teacher) {
+        teachers.add(teacher);
     }
 
     public List<Applicant> getAcceptedApplicants() {

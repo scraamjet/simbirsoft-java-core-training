@@ -1,9 +1,11 @@
 package com.example.simbirsoft_java_core_training.classes.Task7;
 
 class StoreManager {
+    private String name;
     private PaymentProcessor paymentProcessor;
 
-    public StoreManager(PaymentProcessor paymentProcessor) {
+    public StoreManager(String name, PaymentProcessor paymentProcessor) {
+        this.name = name;
         this.paymentProcessor = paymentProcessor;
     }
 
