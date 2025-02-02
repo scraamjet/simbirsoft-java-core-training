@@ -1,7 +1,7 @@
 package com.example.simbirsoft_java_core_training.classes.Task7;
 
 class Customer {
-    private final String name;
+    private String name;
     private boolean isBlacklisted = false;
 
     public Customer(String name) {

@@ -1,7 +1,7 @@
 package com.example.simbirsoft_java_core_training.classes.Task7;
 
 class StoreManager {
-    private final PaymentProcessor paymentProcessor;
+    private PaymentProcessor paymentProcessor;
 
     public StoreManager(PaymentProcessor paymentProcessor) {
         this.paymentProcessor = paymentProcessor;

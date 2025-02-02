@@ -1,10 +1,15 @@
 package com.example.simbirsoft_java_core_training.classes.Task7;
 
-class Product {
-    private final String name;
-    private double price;
+import java.math.BigDecimal;
 
-    public Product(String name, double price) {
+class Product {
+    private String name;
+    private BigDecimal price;
+
+    public Product(String name, BigDecimal price) {
+        if (price.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("Цена товара должна быть больше нуля");
+        }
         this.name = name;
         this.price = price;
     }
@@ -13,12 +18,7 @@ class Product {
         return name;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
 }
-

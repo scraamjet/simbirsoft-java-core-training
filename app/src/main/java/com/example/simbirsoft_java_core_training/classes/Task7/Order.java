@@ -1,11 +1,12 @@
 package com.example.simbirsoft_java_core_training.classes.Task7;
 
+import java.math.BigDecimal;
 import java.util.Map;
 import java.util.HashMap;
 
 class Order {
-    private final Map<Product, Integer> products = new HashMap<>();
-    private final Customer customer;
+    private Map<Product, Integer> products = new HashMap<>();
+    private Customer customer;
     private boolean isPaid = false;
 
     public Order(Customer customer) {
@@ -25,13 +26,15 @@ class Order {
     }
 
     public void addProduct(Product product, int quantity) {
-        if (quantity <= 0) throw new IllegalArgumentException("Количество должно быть больше нуля");
+        if (quantity <= 0) {
+            throw new IllegalArgumentException("Количество должно быть больше нуля");
+        }
         products.merge(product, quantity, Integer::sum);
     }
 
-    public double getTotalPrice() {
+    public BigDecimal getTotalPrice() {
         return products.entrySet().stream()
-                .mapToDouble(entry -> entry.getKey().getPrice() * entry.getValue())
-                .sum();
+                .map(entry -> entry.getKey().getPrice().multiply(BigDecimal.valueOf(entry.getValue())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }
