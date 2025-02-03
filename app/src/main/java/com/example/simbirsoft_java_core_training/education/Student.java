@@ -19,7 +19,8 @@ public class Student {
                    int birthYear,
                    int course,
                    int groupNumber,
-                   Map<String, Integer> grades) {
+                   Map<String, Integer> grades
+    ) {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;

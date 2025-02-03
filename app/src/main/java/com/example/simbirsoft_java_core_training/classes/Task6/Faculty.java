@@ -2,6 +2,7 @@ package com.example.simbirsoft_java_core_training.classes.Task6;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
 
 class Faculty {
     private String name;
@@ -23,7 +24,16 @@ class Faculty {
     }
 
     public void registerApplicant(Applicant applicant) {
+        assignGradesToApplicant(applicant);
         applicants.add(applicant);
+    }
+
+    private void assignGradesToApplicant(Applicant applicant) {
+        for (Teacher teacher : teachers) {
+            if (!applicant.getExamScores().containsKey(teacher.getSubject())) {
+                teacher.gradeExam(applicant, 0);
+            }
+        }
     }
 
     public void addTeacher(Teacher teacher) {

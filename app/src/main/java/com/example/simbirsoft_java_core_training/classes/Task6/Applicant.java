@@ -32,6 +32,10 @@ class Applicant {
         return firstName + " " + lastName;
     }
 
+    public Map<String, Integer> getExamScores() {
+        return examScores;
+    }
+
     public void takeExam(String subject, int score) {
         examScores.put(subject, score);
     }
