@@ -30,8 +30,9 @@ public class CollectionsBlock<T extends Comparable> {
      */
 
     public List<T> collectionTask0(@NonNull List<T> firstList, @NonNull List<T> secondList) {
-        if (firstList == null || secondList == null)
+        if (firstList == null || secondList == null) {
             throw new NullPointerException("Входные параметры не могут быть null");
+        }
 
         List<T> mergedList = new ArrayList<>();
         int i = 0;
@@ -63,8 +64,9 @@ public class CollectionsBlock<T extends Comparable> {
      * @throws NullPointerException если один из параметров null
      */
     public List<T> collectionTask1(@NonNull List<T> inputList) {
-        if (inputList == null)
+        if (inputList == null) {
             throw new NullPointerException("Входные параметры не могут быть null");
+        }
 
         List<T> result = new ArrayList<>();
 
@@ -84,8 +86,9 @@ public class CollectionsBlock<T extends Comparable> {
      * @throws NullPointerException если один из параметров null
      */
     public boolean collectionTask2(@NonNull List<T> firstList, @NonNull List<T> secondList) {
-        if (firstList == null || secondList == null)
+        if (firstList == null || secondList == null) {
             throw new NullPointerException("Входные параметры не могут быть null");
+        }
 
         return new HashSet<>(firstList).equals(new HashSet<>(secondList));
     }
@@ -102,13 +105,17 @@ public class CollectionsBlock<T extends Comparable> {
      * @throws NullPointerException если один из параметров null
      */
     public List<T> collectionTask3(@NonNull List<T> inputList, int n) {
-        if (inputList == null)
+        if (inputList == null) {
             throw new NullPointerException("Входные параметры не могут быть null");
-
-        if (inputList.isEmpty()) return inputList;
+        }
+        if (inputList.isEmpty()) {
+            return inputList;
+        }
 
         int shift = n % inputList.size();
-        if (shift < 0) shift += inputList.size();
+        if (shift < 0) {
+            shift += inputList.size();
+        }
 
         Collections.rotate(inputList, shift);
 
@@ -127,8 +134,9 @@ public class CollectionsBlock<T extends Comparable> {
      * @throws NullPointerException если один из параметров null
      */
     public List<String> collectionTask4(@NonNull List<String> inputList, @NonNull String a, @NonNull String b) {
-        if (inputList == null || a == null || b == null)
+        if (inputList == null || a == null || b == null) {
             throw new NullPointerException("Входные параметры не могут быть null");
+        }
 
         List<String> result = new ArrayList<>();
 
