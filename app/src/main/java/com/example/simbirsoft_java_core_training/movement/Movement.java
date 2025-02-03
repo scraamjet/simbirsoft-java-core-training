@@ -1,11 +1,6 @@
 package com.example.simbirsoft_java_core_training.movement;
 
 public class Movement {
-
-    public enum Directions {
-        UP, DOWN, LEFT, RIGHT
-    }
-
     public static int[] move(int x, int y, Directions direction) {
         switch (direction) {
             case UP:
