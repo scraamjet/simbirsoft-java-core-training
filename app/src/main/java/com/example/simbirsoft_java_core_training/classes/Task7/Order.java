@@ -33,8 +33,19 @@ class Order {
     }
 
     public BigDecimal getTotalPrice() {
-        return products.entrySet().stream()
-                .map(entry -> entry.getKey().getPrice().multiply(BigDecimal.valueOf(entry.getValue())))
+        return products.entrySet()
+                .stream()
+                .map(this::calculateProductTotalPrice)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    private BigDecimal calculateProductTotalPrice(Map.Entry<Product, Integer> entry) {
+        return entry.getKey()
+                .getPrice()
+                .multiply(
+                        BigDecimal.valueOf(
+                                entry.getValue()
+                        )
+                );
     }
 }
