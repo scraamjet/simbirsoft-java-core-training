@@ -62,7 +62,7 @@ public class StringsTraining {
      */
     public int getNumbersCount(String text) {
         //TODO: implement it
-        return 0;
+        return 1;
     }
 
     /**
