@@ -1,5 +1,8 @@
 package com.example.simbirsoft_java_core_training.training;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Набор тренингов по работе со строками в java.
  * <p>
@@ -37,8 +40,17 @@ public class StringsTraining {
      * вернуть пустой массив
      */
     public int[] getArrayLastSymbol(String text) {
-        //TODO: implement it
-        return new int[]{};
+        if (text == null || text.isEmpty()) {
+            throw new IllegalArgumentException("Text cannot be null or empty.");
+        }
+        char lastChar = text.charAt(text.length() - 1);
+        List<Integer> positions = new ArrayList<>();
+        for (int i = 0; i < text.length(); i++) {
+            if (text.charAt(i) == lastChar) {
+                positions.add(i);
+            }
+        }
+        return positions.stream().mapToInt(i -> i).toArray();
     }
 
     /**
