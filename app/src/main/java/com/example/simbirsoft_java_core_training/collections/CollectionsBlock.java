@@ -54,7 +54,7 @@ public class CollectionsBlock<T extends Comparable> {
      */
     public boolean collectionTask2(@NonNull List<T> firstList, @NonNull List<T> secondList) {
         //TODO: implement it
-        return true;
+        return false;
     }
 
     /**
