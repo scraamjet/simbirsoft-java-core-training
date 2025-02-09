@@ -74,7 +74,7 @@ public class StringsTraining {
      */
     public String replaceAllNumbers(String text) {
         //TODO: implement it
-        return text;
+        return "Hello";
     }
 
     /**
