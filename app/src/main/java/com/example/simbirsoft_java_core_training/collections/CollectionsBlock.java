@@ -85,8 +85,8 @@ public class CollectionsBlock<T extends Comparable> {
      */
     public List<String> collectionTask4(@NonNull List<String> inputList, @NonNull String a,
                                         @NonNull String b) {
-        //TODO: implement it
-        return Collections.emptyList();
+        List<String> resultList = new ArrayList<>();
+        return resultList;
     }
 
     /*
