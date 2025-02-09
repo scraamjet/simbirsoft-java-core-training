@@ -22,8 +22,8 @@ public class StringsTraining {
      * элементов строки text
      */
     public String getOddCharacterString(String text) {
-        //TODO: implement it
-        return "";
+        StringBuilder result = new StringBuilder();
+        return result.toString();
     }
 
     /**
