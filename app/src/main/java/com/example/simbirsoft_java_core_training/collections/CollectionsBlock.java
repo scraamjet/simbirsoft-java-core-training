@@ -40,8 +40,8 @@ public class CollectionsBlock<T extends Comparable> {
      * @throws NullPointerException если один из параметров null
      */
     public List<T> collectionTask1(@NonNull List<T> inputList) {
-        //TODO: implement it
-        return Collections.emptyList();
+        List<T> resultList = new ArrayList<>();
+        return resultList;
     }
 
     /**
