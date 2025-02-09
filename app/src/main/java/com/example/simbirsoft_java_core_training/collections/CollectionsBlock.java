@@ -2,6 +2,7 @@ package com.example.simbirsoft_java_core_training.collections;
 
 import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -27,8 +28,8 @@ public class CollectionsBlock<T extends Comparable> {
      * @throws NullPointerException если один из параметров null
      */
     public List<T> collectionTask0(@NonNull List<T> firstList, @NonNull List<T> secondList) {
-        //TODO: implement it
-        return Collections.emptyList();
+        List<T> mergedList = new ArrayList<>(firstList);
+        return mergedList;
     }
 
     /**
@@ -39,8 +40,8 @@ public class CollectionsBlock<T extends Comparable> {
      * @throws NullPointerException если один из параметров null
      */
     public List<T> collectionTask1(@NonNull List<T> inputList) {
-        //TODO: implement it
-        return Collections.emptyList();
+        List<T> resultList = new ArrayList<>();
+        return resultList;
     }
 
     /**
@@ -53,7 +54,7 @@ public class CollectionsBlock<T extends Comparable> {
      */
     public boolean collectionTask2(@NonNull List<T> firstList, @NonNull List<T> secondList) {
         //TODO: implement it
-        return true;
+        return false;
     }
 
     /**
@@ -68,8 +69,8 @@ public class CollectionsBlock<T extends Comparable> {
      * @throws NullPointerException если один из параметров null
      */
     public List<T> collectionTask3(@NonNull List<T> inputList, int n) {
-        //TODO: implement it
-        return Collections.emptyList();
+        List<T> shiftedList = new ArrayList<>(inputList);
+        return shiftedList;
     }
 
     /**
@@ -84,8 +85,8 @@ public class CollectionsBlock<T extends Comparable> {
      */
     public List<String> collectionTask4(@NonNull List<String> inputList, @NonNull String a,
                                         @NonNull String b) {
-        //TODO: implement it
-        return Collections.emptyList();
+        List<String> resultList = new ArrayList<>();
+        return resultList;
     }
 
     /*
