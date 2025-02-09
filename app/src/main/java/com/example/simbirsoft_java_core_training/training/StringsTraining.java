@@ -86,7 +86,7 @@ public class StringsTraining {
      */
     public String capitalReverse(String text) {
         //TODO: implement it
-        return text;
+        return "text";
     }
 
 }
