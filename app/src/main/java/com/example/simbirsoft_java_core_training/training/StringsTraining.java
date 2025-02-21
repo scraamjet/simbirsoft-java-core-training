@@ -132,5 +132,3 @@ public class StringsTraining {
         return result.toString();
     }
 }
-
-
